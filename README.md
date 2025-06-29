@@ -10,14 +10,6 @@ A powerful and modern web application to generate QR codes from any text or URL 
 
 ---
 
-## 📸 Preview
-
-| Light Mode | Dark Mode |
-|------------|-----------|
-| ![Light Mode](https://via.placeholder.com/400x250?text=Light+Mode) | ![Dark Mode](https://via.placeholder.com/400x250?text=Dark+Mode) |
-
----
-
 ## ✨ Features
 
 - ✅ Generate QR codes from any text or URL  
