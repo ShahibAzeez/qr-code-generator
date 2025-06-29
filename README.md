@@ -40,7 +40,7 @@ MIT License – Free to use, modify, and share.
 
 ---
 
-## 🙋‍♂️ Author
+## By
 
 **Shahib Azeez**  
 📍 India  
