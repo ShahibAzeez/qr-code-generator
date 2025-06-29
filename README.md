@@ -1,4 +1,7 @@
-# ⚡ QR Code Generator – Flask Web App
+# ⚡ QR Code Generator – Flask Web App [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+![Ad-Free](https://img.shields.io/badge/No%20Ads-✅-brightgreen)
+![Open Source](https://img.shields.io/badge/Open%20Source-💯-blue)
+
 
 A powerful and modern web application to generate QR codes from any text or URL — with customizable colors, dot styles, and support for embedded logos. Includes local QR history tracking and a clean dark/light theme toggle. ✨
 

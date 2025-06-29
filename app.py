@@ -1,6 +1,6 @@
 from io import BytesIO
 import re
-from flask import Flask, request, send_file, render_template, abort
+from flask import Flask, request, send_file, render_template, abort, send_from_directory
 from PIL import Image
 import qrcode
 from qrcode.image.styledpil import StyledPilImage
@@ -91,6 +91,14 @@ def history():
 @app.errorhandler(400)
 def bad_request(e):
     return str(e), 400
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory('static', 'robots.txt')
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('static', 'sitemap.xml')
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)

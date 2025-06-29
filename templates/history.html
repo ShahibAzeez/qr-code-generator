@@ -1,13 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark"><!-- default dark -->
+<html lang="en" data-theme="dark">
 
 <head>
-    <meta charset="UTF-8">
-    <title>QR History</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8" />
+  <title>QR Code History ─ Your Recent QR Generations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="View and manage your recently generated QR codes. All stored locally, ad-free and private. 100% free and open source." />
+  <meta name="keywords"
+        content="QR code history, recent QR codes, QR archive, free QR code generator" />
+  <link rel="canonical" href="https://qr-code-generator-405x.onrender.com/history" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://qr-code-generator-405x.onrender.com/history" />
+  <meta property="og:title" content="QR Code History ─ Your Recent QR Generations" />
+  <meta property="og:description" content="See all your recent QR codes generated with logo, color, and styles. Free, open-source and local only." />
+  <meta property="og:image" content="https://qr-code-generator-405x.onrender.com/static/og-cover.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="QR Code History ─ See Your Recent QR Codes" />
+  <meta name="twitter:description" content="All your QR code generations, securely stored on your device. Ad-free and free forever." />
+  <meta name="twitter:image" content="https://qr-code-generator-405x.onrender.com/static/og-cover.png" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "QR Code History",
+    "url": "https://qr-code-generator-405x.onrender.com/history",
+    "description": "A private history of QR codes generated using Shahib Azeez's free and open source tool.",
+    "creator": {
+      "@type": "Person",
+      "name": "Shahib Azeez"
+    }
+  }
+  </script>
+
+  <!-- Fonts & CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 
 <body>
     <div class="container">
