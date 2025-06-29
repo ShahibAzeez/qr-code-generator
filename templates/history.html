@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><!-- default dark -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>QR History</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="toggle-mode" id="modeToggle">☀️ Light Mode</div>
+        <h1 class="title">🕘 QR History</h1>
+
+        <p class="small">
+            Your recent QR codes are saved only on <strong>this device.</strong>
+            They’ll disappear if you clear browser data, use incognito mode, or switch browsers/devices.
+        </p>
+
+        <div id="historyGrid" class="grid" style="margin-top:1.5rem"></div>
+
+        <a href="/" class="btn-outline" style="margin-top:1rem;width:auto;display:inline-block">⬅️ Back to Generator</a>
+    </div>
+
+    <script>
+        /* ---------- Theme toggle ---------- */
+        const root = document.documentElement;
+        const modeToggle = document.getElementById("modeToggle");
+        const theme = localStorage.getItem("theme") || "dark";      // default dark
+        root.setAttribute("data-theme", theme);
+        modeToggle.textContent = theme === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
+
+        modeToggle.addEventListener("click", () => {
+            const t = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+            root.setAttribute("data-theme", t);
+            localStorage.setItem("theme", t);
+            modeToggle.textContent = t === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
+        });
+
+        /* ---------- Load history ---------- */
+        const grid = document.getElementById("historyGrid");
+        const history = (JSON.parse(localStorage.getItem("qrHistory") || "[]"))
+            .filter(it => it.src && it.time);      // clean bad entries
+        if (history.length === 0) {
+            grid.innerHTML = "<p>No QR codes generated yet.</p>";
+        } else {
+            history.forEach(({ src, time, data }) => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `
+  <div class="small"><strong>🔗 ${data}</strong></div>
+  <a href="${src}" download="qr_code.png"><img src="${src}" alt="QR"></a>
+  <div class="small">${time}</div>`;
+                grid.appendChild(card);
+            });
+        }
+    </script>
+</body>
+
+</html>

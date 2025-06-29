@@ -1,0 +1,234 @@
+/* ----------  VARIABLES  ---------- */
+:root {
+    --font: 'Inter', sans-serif;
+
+    /* Light */
+    --bg-light: #f5f7fa;
+    --container-light: #ffffff;
+    --text-light: #222;
+    --secondary-light: #555;
+    --primary-light: #0057ff;
+    --border-light: #e0e0e0;
+    --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+    /* Dark */
+    --bg-dark: #0f172a;
+    /* slate-900 */
+    --container-dark: #1e293b;
+    /* slate-800 */
+    --text-dark: #f1f5f9;
+    /* slate-100 */
+    --secondary-dark: #94a3b8;
+    /* slate-400 */
+    --primary-dark: #3b82f6;
+    /* blue-500 */
+    --border-dark: #334155;
+    /* slate-700 */
+    --shadow-dark: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* computed vars */
+[data-theme='light'] {
+    --bg: var(--bg-light);
+    --container: var(--container-light);
+    --text: var(--text-light);
+    --secondary: var(--secondary-light);
+    --primary: var(--primary-light);
+    --border: var(--border-light);
+    --shadow: var(--shadow-light);
+}
+
+[data-theme='dark'] {
+    --bg: var(--bg-dark);
+    --container: var(--container-dark);
+    --text: var(--text-dark);
+    --secondary: var(--secondary-dark);
+    --primary: var(--primary-dark);
+    --border: var(--border-dark);
+    --shadow: var(--shadow-dark);
+}
+
+/* ----------  BASE  ---------- */
+body {
+    margin: 0;
+    padding: 2rem;
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    transition: background .3s, color .3s;
+}
+
+.container {
+    max-width: 640px;
+    margin: auto;
+    background: var(--container);
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    transition: background .3s, box-shadow .3s;
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+/* ----------  FORM  ---------- */
+.form label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.form input[type="text"],
+.form input[type="file"],
+.form select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    font-size: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--container);
+    color: var(--text);
+    transition: border-color .2s, background .2s;
+}
+
+.form input[type="text"]::placeholder {
+    color: var(--secondary);
+}
+
+.form input[type="text"]:focus,
+.form select:focus {
+    border-color: var(--primary);
+    outline: 0;
+}
+
+.form input[type="color"] {
+    width: 100%;
+    height: 42px;
+    margin-top: 6px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.row {
+    display: flex;
+    gap: 1rem
+}
+
+.col {
+    flex: 1
+}
+
+/* ----------  BUTTONS  ---------- */
+.btn,
+.btn-outline {
+    display: inline-block;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: .75rem 1rem;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: background .3s, color .3s, border .3s;
+}
+
+.btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    width: 100%;
+}
+
+.btn:hover {
+    .btn:hover {
+        background: #0041c4;
+        color: white;
+        /* 👈 ensures text stays visible */
+    }
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-outline:hover {
+    background: rgba(59, 130, 246, .15);
+}
+
+/* ignore—just doc comment */
+
+/* ----------  TOGGLE  ---------- */
+.toggle-mode {
+    float: right;
+    margin-top: -2rem;
+    margin-bottom: 1rem;
+    font-size: .95rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--secondary);
+}
+
+/* ----------  PREVIEW  ---------- */
+.preview {
+    margin-top: 2.5rem;
+    text-align: center
+}
+
+.preview img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+}
+
+.hidden {
+    display: none
+}
+
+/* ----------  HISTORY GRID  ---------- */
+.grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+}
+
+.small {
+    font-size: .8rem;
+    color: var(--secondary);
+    margin-top: .3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+/* ----------  MEDIA  ---------- */
+@media(max-width:480px) {
+    body {
+        padding: 1.5rem
+    }
+
+    .title {
+        font-size: 1.6rem
+    }
+
+    .toggle-mode {
+        margin-top: -1.6rem
+    }
+}

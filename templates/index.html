@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><!-- default dark -->
+
+<head>
+  <meta charset="UTF-8">
+  <title>QR Code Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    <div class="toggle-mode" id="modeToggle">☀️ Light Mode</div>
+    <h1 class="title">QR Code Generator</h1>
+
+    <form id="qrForm" class="form" enctype="multipart/form-data">
+      <label for="qrInput">Text / URL</label>
+      <input type="text" id="qrInput" name="qrdata" placeholder="https://example.com" required>
+
+      <label for="logo">Upload Logo (optional)</label>
+      <input type="file" id="logo" name="logo" accept="image/*">
+
+      <div class="row">
+        <div class="col">
+          <label for="fg">QR Colour</label>
+          <input type="color" id="fg" name="fg" value="#000000">
+        </div>
+        <div class="col">
+          <label for="bg">Background</label>
+          <input type="color" id="bg" name="bg" value="#ffffff">
+        </div>
+      </div>
+
+      <label for="style">QR Dot Style</label>
+      <select id="style" name="style">
+        <option value="square">Square</option>
+        <option value="rounded">Rounded</option>
+        <option value="circle">Circle</option>
+      </select>
+
+      <button type="submit" class="btn">⚡ Generate QR</button>
+    </form>
+
+    <!-- history btn -->
+    <a href="/history" class="btn-outline" style="margin-top:1rem;width:auto;display:inline-block">📂 View History</a>
+
+    <div id="qrPreview" class="preview hidden">
+      <h2>Your QR Code:</h2>
+      <img id="qrImage" src="" alt="QR preview">
+      <div class="actions" style="margin-top:1rem">
+        <a id="downloadBtn" download="qr_code.png" class="btn"
+          style="width:auto;display:inline-block;margin-right:.5rem">⬇️ Download</a>
+        <button id="shareBtn" class="btn-outline" style="width:auto;display:inline-block">📲 Share</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ---------- Theme ---------- */
+    const root = document.documentElement;
+    const modeToggle = document.getElementById("modeToggle");
+    const theme = localStorage.getItem("theme") || "dark";      // default dark
+    root.setAttribute("data-theme", theme);
+    modeToggle.textContent = theme === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
+
+    modeToggle.addEventListener("click", () => {
+      const newTheme = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+      root.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      modeToggle.textContent = newTheme === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
+    });
+
+    /* ---------- QR generate ---------- */
+    const form = document.getElementById("qrForm");
+    const qrImage = document.getElementById("qrImage");
+    const qrPreview = document.getElementById("qrPreview");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const shareBtn = document.getElementById("shareBtn");
+
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const res = await fetch("/", { method: "POST", body: fd });
+      if (!res.ok) { alert(await res.text()); return; }
+
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+
+      qrImage.src = url;
+      downloadBtn.href = url;
+      qrPreview.classList.remove("hidden");
+      qrPreview.scrollIntoView({ behavior: "smooth" });
+
+      // convert to DataURL for history
+      const reader = new FileReader();
+      reader.onload = () => {
+        const history = JSON.parse(localStorage.getItem("qrHistory") || "[]")
+          .filter(it => it.src && it.time);       // clean
+        history.unshift({
+          src: reader.result,
+          time: new Date().toLocaleString(),
+          data: fd.get('qrdata') || ''
+        });
+        localStorage.setItem("qrHistory", JSON.stringify(history.slice(0, 20)));
+      };
+      reader.readAsDataURL(blob);
+    });
+
+    shareBtn.addEventListener("click", async () => {
+      if (!navigator.share) return alert("Share not supported");
+      const blob = await fetch(qrImage.src).then(r => r.blob());
+      const file = new File([blob], "qr_code.png", { type: "image/png" });
+      try { await navigator.share({ title: "QR Code", files: [file] }); } catch { }
+    });
+  </script>
+</body>
+
+</html>
