@@ -82,7 +82,7 @@ def index():
     buf = BytesIO()
     qr_img.save(buf, format='PNG')
     buf.seek(0)
-    return send_file(buf, mimetype='image/png', download_name='qr_code.png')
+    return send_file(buf, mimetype='image/png', download_name='QR_Code_BY_ShahibAzeez.png')
 
 @app.route('/history')
 def history():
