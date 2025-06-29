@@ -152,7 +152,7 @@ body {
     .btn:hover {
         background: #0041c4;
         color: white;
-        /* 👈 ensures text stays visible */
+        
     }
 }
 
@@ -166,7 +166,7 @@ body {
     background: rgba(59, 130, 246, .15);
 }
 
-/* ignore—just doc comment */
+
 
 /* ----------  TOGGLE  ---------- */
 .toggle-mode {

@@ -7,10 +7,10 @@ from qrcode.image.styledpil import StyledPilImage
 from qrcode.image.styles.moduledrawers import (
     SquareModuleDrawer, RoundedModuleDrawer, CircleModuleDrawer
 )
-from qrcode.image.styles.colormasks import SolidFillColorMask  # for colours
+from qrcode.image.styles.colormasks import SolidFillColorMask  
 
 app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024  # 2 MB upload cap
+app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024  
 
 HEX = re.compile(r'^#(?:[0-9a-fA-F]{3}){1,2}$')
 
@@ -91,13 +91,14 @@ def history():
 @app.errorhandler(400)
 def bad_request(e):
     return str(e), 400
+
 @app.route('/robots.txt')
 def robots():
     return send_from_directory('static', 'robots.txt')
 
 @app.route('/sitemap.xml')
 def sitemap():
-    return send_from_directory('static', 'sitemap.xml')
+    return send_from_directory('static', 'sitemap.xml') 
 
 
 if __name__ == "__main__":

@@ -8,7 +8,7 @@
   <meta name="description"
         content="View and manage your recently generated QR codes. All stored locally, ad-free and private. 100% free and open source." />
   <meta name="keywords"
-        content="QR code history, recent QR codes, QR archive, free QR code generator" />
+        content="QR code history, recent QR codes, QR archive, free QR code generator, ad free , QR code generater free, customizable QR generater" />
   <link rel="canonical" href="https://qr-code-generator-405x.onrender.com/history" />
 
   <!-- Open Graph -->
@@ -64,7 +64,7 @@
         /* ---------- Theme toggle ---------- */
         const root = document.documentElement;
         const modeToggle = document.getElementById("modeToggle");
-        const theme = localStorage.getItem("theme") || "dark";      // default dark
+        const theme = localStorage.getItem("theme") || "dark";      
         root.setAttribute("data-theme", theme);
         modeToggle.textContent = theme === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
 
@@ -78,7 +78,7 @@
         /* ---------- Load history ---------- */
         const grid = document.getElementById("historyGrid");
         const history = (JSON.parse(localStorage.getItem("qrHistory") || "[]"))
-            .filter(it => it.src && it.time);      // clean bad entries
+            .filter(it => it.src && it.time);      
         if (history.length === 0) {
             grid.innerHTML = "<p>No QR codes generated yet.</p>";
         } else {
