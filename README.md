@@ -1,5 +1,4 @@
-# ⚡ QR Code Generator – Flask Web App
-![![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+# ⚡ QR Code Generator – Flask Web App ![![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 ![Ad-Free](https://img.shields.io/badge/No%20Ads-✅-brightgreen)
 ![Open Source](https://img.shields.io/badge/Open%20Source-💯-blue)
 
